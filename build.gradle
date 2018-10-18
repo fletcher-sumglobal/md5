@@ -1,0 +1,12 @@
+plugins {
+    id 'cpp-application'
+}
+
+application {
+    source.from project.fileTree(dir: '.', include: '**/*.cpp')
+    privateHeaders.from project.file('.')
+}
+
+tasks.withType(CppCompile) {
+    macros.put('EXTERNAL_HEADER', '"main.h"')
+}
